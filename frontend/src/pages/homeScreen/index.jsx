@@ -22,8 +22,6 @@ const HomeScreen = () => {
   const fetchReport = async () => {
     setIsLoading(true);
     try {
-      console.log(process.env);
-      console.log(getBaseURL());
       const res = await axios.get(`${getBaseURL()}/report`);
       if (res.status === 200) {
         setReport(res?.data?.report);
