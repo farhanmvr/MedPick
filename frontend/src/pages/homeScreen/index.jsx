@@ -9,6 +9,7 @@ import TotalIncidentsCard from './components/TotalIncidentsCard';
 import { Row, Col, message } from 'antd';
 import axios from 'axios';
 import Loading from '../../components/Loading';
+import { getBaseURL } from '../../helpers';
 
 const HomeScreen = () => {
   const [report, setReport] = useState({});
@@ -16,14 +17,12 @@ const HomeScreen = () => {
 
   useEffect(() => {
     fetchReport();
-    console.log('callng')
   }, []);
 
   const fetchReport = async () => {
-    const baseURL = process.env.BASE_URL || 'http://localhost:5000';
     setIsLoading(true);
     try {
-      const res = await axios.get(`${baseURL}/report`);
+      const res = await axios.get(`${getBaseURL()}/report`);
       if (res.status === 200) {
         setReport(res?.data?.report);
       } else throw new Error();
